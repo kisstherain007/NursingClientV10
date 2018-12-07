@@ -1,6 +1,10 @@
 package com.zpd.nursing.di;
 
 import com.zpd.nursing.WebService;
+import com.zpd.nursing.repository.api.OrderService;
+import com.zpd.nursing.repository.api.PatientService;
+import com.zpd.nursing.repository.api.SystemService;
+import com.zpd.nursing.repository.api.UserService;
 
 import javax.inject.Singleton;
 
@@ -21,4 +25,27 @@ public class NursingAppModule {
         return retrofit.create(WebService.class);
     }
 
+    @Singleton
+    @Provides
+    SystemService provideSystemService(Retrofit retrofit) {
+        return retrofit.create(SystemService.class);
+    }
+
+    @Singleton
+    @Provides
+    UserService provideUserService(Retrofit retrofit) {
+        return retrofit.create(UserService.class);
+    }
+
+    @Singleton
+    @Provides
+    PatientService providePatientService(Retrofit retrofit) {
+        return retrofit.create(PatientService.class);
+    }
+
+    @Singleton
+    @Provides
+    OrderService provideOrderService(Retrofit retrofit) {
+        return retrofit.create(OrderService.class);
+    }
 }

@@ -13,11 +13,5 @@ import retrofit2.http.POST;
 
 public interface WebService {
 
-    /**
-     * 登陆接口
-     */
-    @FormUrlEncoded
-    @POST("Mobile/ClientCommunication/checkLogin")
-    Call<AccountLoginResultEntity> login(@Field("user_number") String user_number,
-                                         @Field("login_password") String login_password);
+
 }

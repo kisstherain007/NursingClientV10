@@ -1,23 +1,16 @@
 package com.zpd.nursing;
 
-import android.app.Activity;
-import android.app.Application;
-
-import com.zpd.nursing.db.AppDatabase;
-import com.zpd.nursing.di.AppInjector;
-import com.zpd.nursing.util.AppExecutors;
-
-import javax.inject.Inject;
+import com.zpd.nursing.di.AppModule;
+import com.zpd.nursing.di.DaggerNursingAppComponent;
 
 import dagger.android.AndroidInjector;
-import dagger.android.DispatchingAndroidInjector;
-import dagger.android.HasActivityInjector;
+import dagger.android.DaggerApplication;
 
 /**
  * Created by zhoubo on 2018/10/16.
  */
 
-public class NursingClientApp extends Application implements HasActivityInjector{
+public class NursingClientApp extends DaggerApplication {
 
     private static NursingClientApp instance;
 
@@ -28,17 +21,12 @@ public class NursingClientApp extends Application implements HasActivityInjector
     @Override
     public void onCreate() {
         super.onCreate();
-
-        AppInjector.init(this);
-
         instance = this;
     }
 
-    @Inject
-    DispatchingAndroidInjector<Activity> activityDispatchingAndroidInjector;
-
     @Override
-    public AndroidInjector<Activity> activityInjector() {
-        return activityDispatchingAndroidInjector;
+    protected AndroidInjector<? extends DaggerApplication> applicationInjector() {
+        return DaggerNursingAppComponent.builder().application(this).build();
     }
+
 }

@@ -17,6 +17,8 @@ import com.zpd.nursing.db.entity.MenuItemEntity;
 import com.zpd.nursing.db.entity.PatientEntity;
 import com.zpd.nursing.util.AppExecutors;
 
+import javax.inject.Inject;
+
 /**
  * Created by zhoubo on 2018/10/16.
  */
@@ -29,10 +31,10 @@ import com.zpd.nursing.util.AppExecutors;
         version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {
 
-//    private static AppDatabase sInstance;
+    //    private static AppDatabase sInstance;
 //
 //    @VisibleForTesting
-//    public static final String DATABASE_NAME = "zpd-v10.db";
+    public static final String DATABASE_NAME = "zpd-v10.db";
 //
 //    private final MutableLiveData<Boolean> mIsDatabaseCreated = new MutableLiveData<>();
 //

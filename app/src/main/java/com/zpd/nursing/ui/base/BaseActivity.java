@@ -9,19 +9,13 @@ import javax.inject.Inject;
 
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
+import dagger.android.support.DaggerAppCompatActivity;
 import dagger.android.support.HasSupportFragmentInjector;
 
 /**
  * Created by zhoubo on 2018/11/26.
  */
 
-public class BaseActivity extends AppCompatActivity implements HasSupportFragmentInjector {
+public abstract class BaseActivity extends DaggerAppCompatActivity {
 
-    @Inject
-    DispatchingAndroidInjector<Fragment> fragmentInjector;
-
-    @Override
-    public AndroidInjector<Fragment> supportFragmentInjector() {
-        return fragmentInjector;
-    }
 }

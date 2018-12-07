@@ -4,6 +4,9 @@ import android.arch.persistence.room.Room;
 
 import com.zpd.nursing.NursingClientApp;
 import com.zpd.nursing.db.AppDatabase;
+import com.zpd.nursing.db.dao.AccountLoginResultDao;
+import com.zpd.nursing.db.entity.AccountEntity;
+import com.zpd.nursing.viewmodel.LoginViewModel;
 
 import javax.inject.Singleton;
 
@@ -13,26 +16,24 @@ import dagger.Provides;
 /**
  * Created by zhoubo on 2018/11/26.
  */
-@Module
+@Module(includes = ViewModelMoudle.class)
 public class AppModule {
 
-    private NursingClientApp nursingClientApp;
-
-    public AppModule(NursingClientApp nursingClientApp) {
-        this.nursingClientApp = nursingClientApp;
+    @Singleton
+    @Provides
+    AppDatabase provideAppDatabase(NursingClientApp nursingClientApp) {
+        return Room.databaseBuilder(nursingClientApp, AppDatabase.class, AppDatabase.DATABASE_NAME).build();
     }
 
     @Singleton
     @Provides
-    public NursingClientApp provideNursingClientApp() {
-        return nursingClientApp;
+    AccountLoginResultDao provideAccountLoginResultDao(AppDatabase database) {
+        return database.accountLoginResultDao();
     }
 
-    @Singleton
     @Provides
-    AppDatabase provideAppDatabase() {
-        return Room.databaseBuilder(nursingClientApp, AppDatabase.class, "zpd-v10.db").build();
+    AccountEntity providesAccountEntity() {
+        return new AccountEntity();
     }
-
 
 }
